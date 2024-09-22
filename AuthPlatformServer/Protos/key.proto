@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+option csharp_namespace = "AuthPlatformServer";
+
+package key;
+
+service Key {
+	rpc GenerateKeys (GenerateKeysRequest) returns (GenerateKeysReply);
+	rpc DeleteKeys (DeleteKeysRequest) returns (DeleteKeysReply);
+	rpc ChangeKeyStatus (ChangeKeyStatusRequest) returns (ChangeKeyStatusReply);
+	rpc GetKeys (GetKeysRequest) returns (GetKeysReply);
+	rpc DownloadDataKey (DownloadDataKeyRequest) returns (DownloadDataKeyReply);
+}
+
+message KeyItem {
+	int32 id = 1;
+	int32 productId = 2;
+	string keyValue = 3;
+	string status = 4;
+	string startTime = 5;
+	string data = 6;
+}
+
+message GenerateKeysRequest {
+  int32 productId = 1;
+  int32 keyCount = 2;
+}
+
+message GenerateKeysReply {
+  string message = 1;
+}
+
+message DeleteKeysRequest {
+  int32 productId = 1;
+  repeated int32 keyId = 2;
+}
+
+message DeleteKeysReply {
+  string message = 1;
+}
+
+message ChangeKeyStatusRequest{
+	int32 keyId = 1;
+	string newStatus = 2;
+}
+
+message ChangeKeyStatusReply{
+	string message = 1;
+}
+
+message GetKeysRequest {
+	int32 productId = 1;
+}
+
+message GetKeysReply {
+	string message = 1;	
+	repeated KeyItem keys = 2;
+}
+
+message DownloadDataKeyRequest {
+	int32 keyId = 1;
+}
+
+message DownloadDataKeyReply {
+	string data = 1;
+}
+
+

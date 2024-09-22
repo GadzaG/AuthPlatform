@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+option csharp_namespace = "AuthPlatformServer";
+
+package global;
+
+service Global {
+	rpc CreateGlobal (CreateGlobalRequest) returns (CreateGlobalReply);
+	rpc ChangeGlobal (ChangeGlobalRequest) returns (ChangeGlobalReply);
+	rpc DeleteGlobal (DeleteGlobalRequest) returns (DeleteGlobalReply);
+	rpc GetGlobals (GetGlobalsRequest) returns (GetGlobalsReply);
+}
+
+message GlobalItem {
+	int32 globalId = 1;
+	string key = 2;
+	string value = 3;
+}
+
+message CreateGlobalRequest{
+	string key = 1;
+	string value = 2;
+}
+
+message CreateGlobalReply{
+	string message = 1;
+}
+
+message ChangeGlobalRequest{
+	int32 globalId = 1;
+	string newKey = 2;
+	string newValue = 3;
+}
+
+message ChangeGlobalReply{
+	string message = 1;
+}
+
+message DeleteGlobalRequest{
+	int32 globalId = 1;
+}
+
+message DeleteGlobalReply{
+	string message = 1;
+}
+
+message GetGlobalsRequest{
+
+}
+
+message GetGlobalsReply{
+	repeated GlobalItem globals = 1;
+}

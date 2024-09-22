@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+option csharp_namespace = "AuthPlatformServer";
+
+package product;
+
+service Product {
+	rpc CreateProduct (CreateProductRequest) returns (CreateProductReply);
+	rpc DeleteProduct (DeleteProductRequest) returns (DeleteProductReply);
+	rpc GetAllProduct (GetAllProductRequest) returns (GetAllProductReply);
+	rpc ChangeProduct (ChangeProductRequest) returns (ChangeProductReply);
+}
+
+message CreateProductRequest {
+	string name = 1;
+	int32 period = 2;
+}
+
+message CreateProductReply {
+	string replyMessage = 1;
+}
+
+message DeleteProductRequest {
+	int32 productId = 1;
+}
+
+message DeleteProductReply {
+	string replyMessage = 1;
+}
+
+message GetAllProductRequest {
+}
+
+message GetAllProductReply {
+	repeated ProductItem products = 1;
+}
+
+message ProductItem {
+	int32 id = 1;
+	string name = 2;
+	int32 period = 3;
+}
+
+
+message ChangeProductRequest {
+	int32 id = 1;
+	string name = 2;
+	int32 period = 3;
+}
+
+message ChangeProductReply {
+	string replyMessage = 1;
+}

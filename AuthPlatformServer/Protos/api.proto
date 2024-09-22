@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option csharp_namespace = "AuthPlatformServer";
+
+package Api;
+
+service Api {
+	rpc KeyCheck (KeyCheckRequest) returns (KeyCheckReply);
+	rpc GetGlobal (GetGlobalRequest) returns (GetGlobalReply);
+	rpc UploadData (UploadDataRequest) returns (UploadDataReply);
+}
+
+message KeyCheckRequest {
+	string key = 1;
+}
+
+message KeyCheckReply {
+	string message = 1;
+}
+
+message GetGlobalRequest {
+	string key = 1;
+}
+
+message GetGlobalReply {
+	string value = 1;
+}
+
+message UploadDataRequest {
+	string data = 1;
+}
+
+message UploadDataReply {
+	string message = 1;
+}
